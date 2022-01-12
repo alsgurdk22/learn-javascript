@@ -1,10 +1,10 @@
 // ! 연산자 참 -> 거짓 거짓 -> 참
-console.log('!true = '+ !true); // false
+console.log('!true = ' + !true); // false
 console.log('!false = ' + !false); // true
 
 // 자료 형변환 !!
 console.log('!!\'a\' = ' + !!'a');
-console.log('!!false = '+ !!false);
+console.log('!!false = ' + !!false);
 console.log('!!\'\' = ' + !!'');
 console.log('!!0 = ' + !!0);
 console.log('!!NaN = ' + !!NaN);
@@ -111,3 +111,44 @@ if (condition) {
   val2 = 'false!';
 }
 console.log(val2);
+
+// 조건부 연산 중첩사용
+let condition1 = false;
+let condition2 = true;
+let val3 = condition1 ? 'condi1 true!' : condition2 ? 'condi2 true!' : 'all false!';
+console.log(val3);
+// 위 코드 가독성 높히는 방법
+val3 = condition1 ? 'condi1 true!' : (condition2 ? 'condi2 true!' : 'all false!');
+console.log(val3);
+val3 = condition1
+  ? 'condi1 true!'
+    : condition2
+    ? 'condi2 true!'
+  : 'all false!';
+console.log(val3);
+
+// 2.4 퀴즈
+// if 문을 switch 문과 조건부 연산자로 바꿔보세요
+let cond = true;
+let val0 = '';
+if (cond) {
+  val0 = 'true!!';
+} else {
+  val0 = 'false!!';
+}
+console.log(val0);
+
+// switch 문
+switch (cond) {
+  default:
+    val0 = 'false !!!';
+    break;
+  case true:
+    val0 = 'true !!!';
+    break;
+}
+console.log(val0);
+
+// 조건부 연산자
+val0 = cond ? 'true~' : 'false~';
+console.log(val0);
