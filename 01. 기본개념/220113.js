@@ -107,3 +107,36 @@ console.log(minhyuk);
 
 // 배열과 함수가 객체인 이유
 // 배열, 함수 둘다 객체의 성질을 사용할 수 있음.
+// 객체의 속성 값으로 함수가 들어가면 이 속성을 메서드(method) 라고 함
+const debug = {
+  log: function(val) {
+    console.log(val);
+  },
+};
+debug.log('hello js');
+
+// 객체는 모양이 같아도 생성할 때마다 새로운 객체가 생성.
+// 같은 객체인지 비교하려면 기존 객체를 변수에 저장해 두어야 함
+console.log({} === {});
+const aa = { name: 'minhyuk' };
+const array1 = [1, 2, aa];
+console.log(aa === array1[2]);
+
+// 참조. 변수가 아래 처럼 같은 객체를 저장하고 있다면, 객체의 속성 값을 바꾸면 모두 바뀌는 것처럼 보임.
+const bb = { name: 'hyuk' };
+const cc = bb;
+console.log(cc.name);
+bb.name = 'min';
+console.log(cc.name);
+
+// 퀴즈
+// 객체 안에 객체가 있을 때, '정' 값에 접근하는 방법은?
+const minhyuk1 = {
+  name: {
+    first: '민혁',
+    last: '정',
+  },
+  gender: 'm',
+};
+console.log(minhyuk1.name.last);
+console.log(minhyuk1['name']['last']);
