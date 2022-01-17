@@ -18,13 +18,26 @@
   <input type="text">
   <button>입력</button>
   <script>
-    const number = Number(prompt('몇 명이 참가?'));
     const $button = document.querySelector('button');
     const $input = document.querySelector('input');
     const $word = document.querySelector('#word');
     const $order = document.querySelector('#order');
+    let number; // 참가인원
     let word; // 제시어
     let newWord; // 현재 단어
+    
+    const orderNumberCheck = () => {
+      for (;;) {
+        number = Number(prompt('몇 명이 참가?'));
+        if (isNaN(number) || number === 0) { // 숫자 문자 체크
+          // 숫자가 아님
+          alert('숫자가 아니거나 0명 입니다. 다시 입력해주세요');
+        } else {
+          alert(`${number} 명이 끝말잇기를 시작합니다.`);
+          break;
+        }
+      }
+    };
 
     const onClickButton = () => {
       if (!word || word[word.length - 1] === newWord[0]) { // 제시어가 비어있거나, 단어가 같거나
@@ -47,6 +60,7 @@
     };
     $button.addEventListener('click', onClickButton);
     $input.addEventListener('input', onInput);
+    orderNumberCheck();
   </script>
 </body>
 
