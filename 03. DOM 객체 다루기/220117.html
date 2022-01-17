@@ -27,20 +27,20 @@
     let newWord; // 현재 단어
 
     const onClickButton = () => {
-      if (!word) { // 제시어가 비어있나?
+      if (!word || word[word.length - 1] === newWord[0]) { // 제시어가 비어있거나, 단어가 같거나
         word = newWord; // 입력한 단어가 제시어가 됨.
         $word.textContent = word; // 화면에 제시어 표시
         const order = Number($order.textContent);
-        
-      } else { // 비어 있지 않다.
-        if (word[word.length - 1] === newWord[0]) { // 입력한 단어가 제시어의 끝단어와 맞는가?
-          // 맞다
-          word = newWord;
-          $word.textContent = word;
-        } else { // 단어가 서로 다르다
-
+        if (order + 1 > number) {
+          $order.textContent = 1;
+        } else {
+          $order.textContent = order + 1;
         }
+      } else { // 비어 있지 않거나, 단어가 다름
+        alert('올바른 단어가 아닙니다. 다시 입력하세요!');
       }
+      $input.value = ''; // input창 비우기
+      $input.focus(); // input창 커서 두기
     };
     const onInput = (event) => {
       newWord = event.target.value;
