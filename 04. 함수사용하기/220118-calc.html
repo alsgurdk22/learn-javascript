@@ -1,18 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>계산기</title>
   <style>
-    * { box-sizing: border-box; }
-    .container {width: 260px;}
-    #ing { width: 245px; height: 50px; margin: 5px; text-align: right; }
-    #result { width: 180px; height: 50px; margin: 5px; text-align: right; }
-    #operator, button { width: 50px; height: 50px; margin: 5px; text-align: center; }
+    * {
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 260px;
+    }
+
+    #ing {
+      width: 245px;
+      height: 50px;
+      margin: 5px;
+      text-align: right;
+    }
+
+    #result {
+      width: 180px;
+      height: 50px;
+      margin: 5px;
+      text-align: right;
+    }
+
+    #operator,
+    button {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      text-align: center;
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <input readonly id="ing">
@@ -91,6 +117,12 @@
             $result.value = numOne / numTwo;
             break;
         }
+        $operator.value = '';
+        numOne = $result.value;
+        operator = '';
+        numTwo = '';
+      } else {
+        alert('숫자를 먼저 입력하세요.');
       }
     }
     const calClear = () => {
@@ -121,4 +153,5 @@
     document.querySelector('#clear').addEventListener('click', calClear);
   </script>
 </body>
+
 </html>
