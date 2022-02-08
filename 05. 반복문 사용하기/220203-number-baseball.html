@@ -49,6 +49,11 @@
       }
       return true;
     }
+    let out = 0;
+    const defeated = () => {
+      const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+      $logs.appendChild(message);
+    };
     $form.addEventListener('submit', (event) => {
       event.preventDefault(); // submit 이벤트가 발생 시 브라우저를 새로고침 하는것을 막는다.
       const value = $input.value;
@@ -60,8 +65,7 @@
         return;
       }
       if (tries.length >= 9) { // 10회 시도를 했는가?
-        const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
-        $logs.appendChild(message);
+        defeated();
         return;
       }      
       // 몇 스트라이크 몇 볼인지 표시
@@ -71,26 +75,24 @@
       // forEach 배열에 있는 요소들을 메서드로 반복
       answer.forEach((number, aIndex) => {
         const index = value.indexOf(String(number));
-        if (index > -1) {
-          if (index === aIndex) {
+        if (index > -1) { // 일치하는 숫자 발견
+          if (index === aIndex) { // 자릿수도 같음
             strike += 1;
-          } else {
+          } else { // 숫자만 같음
             ball += 1;
           }
         }
       });
-      // for
-      // for (let i = 0; i < answer.length; i++) {
-      //   const index = value.indexOf(answer[i]);
-      //   if (index > -1) {
-      //     if (index === i) {
-      //       strike += 1;
-      //     } else {
-      //       ball += 1;
-      //     }
-      //   }
-      // }
-      $logs.append(`${value}: ${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
+      if (strike === 0 && ball === 0) {
+        out++;
+        $logs.append(`${value}: ${out} 아웃`, document.createElement('br'));
+      } else {
+        $logs.append(`${value}: ${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
+      }
+      if (out === 3) {
+        defeated();
+        return;
+      }
       tries.push(value);
     });
   </script>
