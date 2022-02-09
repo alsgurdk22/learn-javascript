@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,10 +16,11 @@
       line-height: 40px;
       font-size: 20px;
       text-align: center;
-      margin-right: 20px;
+      margin-left: 20px;
     }
   </style>
 </head>
+
 <body>
   <div id="result">추첨 결과는?</div>
   <div id="bonus">보너스: </div>
@@ -32,6 +34,29 @@
       shuffle.push(value); // shuffle 배열에 넣기
     }
     console.log(shuffle);
+    const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b); // 오름차순 정렬, 내림차순 정렬은 b - a
+    console.log(winBalls[0]);
+    const $result = document.querySelector('#result');
+    for (let i = 0; i < winBalls.length; i++) {
+      setTimeout(() => {
+        const $ball = document.createElement('div');
+        $ball.className = 'ball';
+        $ball.textContent = winBalls[i];
+        $result.appendChild($ball);
+      }, 1000 * (i + 1));
+    }
+    // 조건이 간단하여 while 문이 for문 보다 더 간단함
+    // const candidate1 = Array(45).fill().map((v, i) => i + 1);
+    // const shuffle1 = [];
+    // console.log(candidate1.length);
+    // for (let i = candidate1.length; i > 0; i--) {
+    //   const random = Math.floor(Math.random() * i); // 무작위 인덱스 뽑기
+    //   const spliceArray = candidate1.splice(random, 1); // 뽑은 값은 배열에 들어 있음
+    //   const value = spliceArray[0]; // 배열에 들어 있는 값을 꺼내서
+    //   shuffle1.push(value); // shuffle 배열에 넣기
+    // }
+    // console.log(shuffle1);
   </script>
 </body>
+
 </html>
