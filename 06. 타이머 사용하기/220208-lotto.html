@@ -18,6 +18,11 @@
       text-align: center;
       margin-left: 20px;
     }
+    .ball.red {background-color: red;color: #fff;}
+    .ball.orange {background-color: orange;}
+    .ball.yellow {background-color: yellow;}
+    .ball.blue {background-color: blue;color: #fff;}
+    .ball.green {background-color: green;color: #fff;}
   </style>
 </head>
 
@@ -33,15 +38,28 @@
       const value = spliceArray[0]; // 배열에 들어 있는 값을 꺼내서
       shuffle.push(value); // shuffle 배열에 넣기
     }
-    console.log(shuffle);
     const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b); // 오름차순 정렬, 내림차순 정렬은 b - a
     const bonus = shuffle[6];
-    console.log(winBalls, bonus);
+
+    const colorize = (number, $tag) => {
+      if (number < 10) {
+        $tag.classList.add('red');
+      } else if (number < 20) {
+        $tag.classList.add('orange');
+      } else if (number < 30) {
+        $tag.classList.add('yellow');
+      } else if (number < 40) {
+        $tag.classList.add('blue');
+      } else {
+        $tag.classList.add('green');
+      }
+    }
     const $result = document.querySelector('#result');
     function drawBall(number, $parent) {
       const $ball = document.createElement('div');
       $ball.className = 'ball';
       $ball.textContent = number;
+      colorize(number, $ball);
       $parent.appendChild($ball);
     }
     for (let i = 0; i < winBalls.length; i++) {
