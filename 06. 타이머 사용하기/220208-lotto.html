@@ -35,16 +35,25 @@
     }
     console.log(shuffle);
     const winBalls = shuffle.slice(0, 6).sort((a, b) => a - b); // 오름차순 정렬, 내림차순 정렬은 b - a
-    console.log(winBalls[0]);
+    const bonus = shuffle[6];
+    console.log(winBalls, bonus);
     const $result = document.querySelector('#result');
+    function drawBall(number, $parent) {
+      const $ball = document.createElement('div');
+      $ball.className = 'ball';
+      $ball.textContent = number;
+      $parent.appendChild($ball);
+    }
     for (let i = 0; i < winBalls.length; i++) {
       setTimeout(() => {
-        const $ball = document.createElement('div');
-        $ball.className = 'ball';
-        $ball.textContent = winBalls[i];
-        $result.appendChild($ball);
+        drawBall(winBalls[i], $result);
       }, 1000 * (i + 1));
     }
+    const $bonus = document.querySelector('#bonus');
+    setTimeout(() => {
+      drawBall(bonus, $bonus);
+    }, 7000);
+
     // 조건이 간단하여 while 문이 for문 보다 더 간단함
     // const candidate1 = Array(45).fill().map((v, i) => i + 1);
     // const shuffle1 = [];
